@@ -2,6 +2,7 @@ package com.example.myblog.controller;
 
 import com.example.myblog.model.Post;
 import com.example.myblog.service.PostService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Post> getAllPosts() {
         return postService.getAllPosts();
     }
