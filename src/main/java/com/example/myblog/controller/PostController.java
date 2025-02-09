@@ -38,4 +38,10 @@ public class PostController {
         postService.likePost(id);
         return ResponseEntity.ok("Лайк поставлен");
     }
+
+    @GetMapping("/filter")
+    public List<Post> getPostsByTag(@RequestParam("tag") String tag) {
+        return postService.getPostsByTag(tag);
+    }
+
 }

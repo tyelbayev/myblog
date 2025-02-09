@@ -30,4 +30,8 @@ public class PostService {
     public void likePost(Long postId) {
         postDao.increaseLikeCount(postId);
     }
+
+    public List<Post> getPostsByTag(String tag) {
+        return postDao.findAllByTag(tag);
+    }
 }

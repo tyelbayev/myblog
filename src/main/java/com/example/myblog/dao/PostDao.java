@@ -49,4 +49,10 @@ public class PostDao {
         String sql = "INSERT INTO post (title, content, image_url, created_at, like_count, tags) VALUES (?, ?, ?, NOW(), 0, ?)";
         jdbcTemplate.update(sql, post.getTitle(), post.getContent(), post.getImgUrl(), post.getTags());
     }
+
+    public List<Post> findAllByTag(String tag) {
+        String sql = "SELECT * FROM post WHERE tags LIKE ?";
+        return jdbcTemplate.query(sql, postRowMapper, "%" + tag + "%");
+    }
+
 }
