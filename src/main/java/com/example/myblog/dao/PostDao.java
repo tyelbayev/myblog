@@ -29,9 +29,9 @@ public class PostDao {
         return post;
     };
 
-    public List<Post> findAll() {
-        String sql = "select * from post";
-        return jdbcTemplate.query(sql, postRowMapper);
+    public List<Post> findAll(int page, int size) {
+        String sql = "SELECT * FROM post LIMIT ? OFFSET ?";
+        return jdbcTemplate.query(sql, postRowMapper, size, page * size);
     }
 
     public Optional<Post> findById(Long id) {

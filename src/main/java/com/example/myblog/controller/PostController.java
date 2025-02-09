@@ -17,10 +17,12 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Post> getAllPosts() {
-        return postService.getAllPosts();
+    @GetMapping
+    public List<Post> getAllPosts(@RequestParam(value = "page", defaultValue = "0") int page,
+                                  @RequestParam(value = "size", defaultValue = "10") int size) {
+        return postService.getAllPosts(page, size);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPostById(@PathVariable("id") Long id) {

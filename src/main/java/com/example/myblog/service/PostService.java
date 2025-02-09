@@ -15,8 +15,8 @@ public class PostService {
         this.postDao = postDao;
     }
 
-    public List<Post> getAllPosts() {
-        return postDao.findAll();
+    public List<Post> getAllPosts(int page, int size) {
+        return postDao.findAll(page, size);
     }
 
     public Post getPostById(Long id) {
