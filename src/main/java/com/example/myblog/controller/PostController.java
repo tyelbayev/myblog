@@ -46,4 +46,10 @@ public class PostController {
         return postService.getPostsByTag(tag);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updatePost(@PathVariable("id") Long id, @RequestBody Post post) {
+        postService.updatePost(id, post);
+        return ResponseEntity.ok("Пост обновлен");
+    }
+
 }

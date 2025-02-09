@@ -34,4 +34,14 @@ public class PostService {
     public List<Post> getPostsByTag(String tag) {
         return postDao.findAllByTag(tag);
     }
+
+    public void updatePost(Long id, Post post) {
+        Post existingPost = postDao.findById(id).orElseThrow(() -> new RuntimeException("Пост не найден"));
+        existingPost.setTitle(post.getTitle());
+        existingPost.setContent(post.getContent());
+        existingPost.setImgUrl(post.getImgUrl());
+        existingPost.setTags(post.getTags());
+        postDao.update(existingPost);
+    }
+
 }

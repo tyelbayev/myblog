@@ -55,4 +55,9 @@ public class PostDao {
         return jdbcTemplate.query(sql, postRowMapper, "%" + tag + "%");
     }
 
+    public void update(Post post) {
+        String sql = "UPDATE post SET title = ?, content = ?, image_url = ?, tags = ? WHERE id = ?";
+        jdbcTemplate.update(sql, post.getTitle(), post.getContent(), post.getImgUrl(), post.getTags(), post.getId());
+    }
+
 }
