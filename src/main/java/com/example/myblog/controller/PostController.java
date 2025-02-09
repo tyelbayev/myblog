@@ -23,18 +23,18 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+    public ResponseEntity<Post> getPostById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(postService.getPostById(id));
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> addPost(@RequestBody Post post) {
         postService.addPost(post);
         return ResponseEntity.ok("Пост добавлен");
     }
 
     @PostMapping("/{id}/like")
-    public ResponseEntity<String> likePost(@PathVariable Long id) {
+    public ResponseEntity<String> likePost(@PathVariable("id") Long id) {
         postService.likePost(id);
         return ResponseEntity.ok("Лайк поставлен");
     }

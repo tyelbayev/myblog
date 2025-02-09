@@ -1,7 +1,5 @@
 package com.example.myblog.model;
 
-import org.h2.engine.User;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,6 +11,9 @@ public class Post {
     private LocalDateTime createdAt;
     private List<Tag> tags;
     private int likeCount;
+
+    public Post() {
+    }
 
     public void setId (Long id){
         this.id = id;
