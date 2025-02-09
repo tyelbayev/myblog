@@ -9,7 +9,7 @@ public class Post {
     private String content;
     private String imgUrl;
     private LocalDateTime createdAt;
-    private List<Tag> tags;
+    private String tags;
     private int likeCount;
 
     public Post() {
@@ -35,7 +35,7 @@ public class Post {
         this.createdAt = createdAt;
     }
 
-    public void setTags (List<Tag> tags){
+    public void setTags (String tags){
         this.tags = tags;
     }
 
@@ -59,7 +59,7 @@ public class Post {
         return createdAt;
     }
 
-    public List<Tag> getTags(){
+    public String getTags(){
         return tags;
     }
 

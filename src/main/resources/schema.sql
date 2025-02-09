@@ -4,7 +4,8 @@ CREATE TABLE post (
                       content TEXT NOT NULL,
                       image_url VARCHAR(255),
                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                      like_count INT
+                      like_count INT,
+                      tags VARCHAR(1000)
 );
 
 CREATE TABLE tag (

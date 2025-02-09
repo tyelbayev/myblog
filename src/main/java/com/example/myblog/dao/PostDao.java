@@ -25,6 +25,7 @@ public class PostDao {
         post.setImgUrl(rs.getString("image_url"));
         post.setLikeCount(rs.getInt("like_count"));
         post.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+        post.setTags(rs.getString("tags"));
         return post;
     };
 
@@ -45,7 +46,7 @@ public class PostDao {
     }
 
     public void save(Post post) {
-        String sql = "INSERT INTO post (title, content, image_url, created_at, like_count) VALUES (?, ?, ?, NOW(), 0)";
-        jdbcTemplate.update(sql, post.getTitle(), post.getContent(), post.getImgUrl());
+        String sql = "INSERT INTO post (title, content, image_url, created_at, like_count, tags) VALUES (?, ?, ?, NOW(), 0, ?)";
+        jdbcTemplate.update(sql, post.getTitle(), post.getContent(), post.getImgUrl(), post.getTags());
     }
 }
