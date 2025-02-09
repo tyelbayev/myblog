@@ -44,4 +44,7 @@ public class PostService {
         postDao.update(existingPost);
     }
 
+    public void deletePost(Long id) {
+        postDao.delete(id);
+    }
 }

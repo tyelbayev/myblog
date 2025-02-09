@@ -60,4 +60,8 @@ public class PostDao {
         jdbcTemplate.update(sql, post.getTitle(), post.getContent(), post.getImgUrl(), post.getTags(), post.getId());
     }
 
+    public void delete(Long id) {
+        String sql = "DELETE FROM post WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }
