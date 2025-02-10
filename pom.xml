@@ -78,5 +78,6 @@
                 <version>3.4.0</version>
             </plugin>
         </plugins>
+        <finalName>myblog</finalName>
     </build>
 </project>

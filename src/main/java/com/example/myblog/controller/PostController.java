@@ -1,38 +1,42 @@
 package com.example.myblog.controller;
 
+import com.example.myblog.model.Comment;
 import com.example.myblog.model.Post;
+import com.example.myblog.service.CommentService;
 import com.example.myblog.service.PostService;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/posts")
+@Controller
+@RequestMapping("/post")
 public class PostController {
     private final PostService postService;
+    private final CommentService commentService;
 
-    public PostController(PostService postService) {
+    public PostController(PostService postService, CommentService commentService) {
         this.postService = postService;
+        this.commentService = commentService;
     }
-
-    @GetMapping
-    public List<Post> getAllPosts(@RequestParam(value = "page", defaultValue = "0") int page,
-                                  @RequestParam(value = "size", defaultValue = "10") int size) {
-        return postService.getAllPosts(page, size);
-    }
-
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(postService.getPostById(id));
+    public String getPostById(@PathVariable("id") Long id, Model model) {
+        Post post = postService.getPostById(id);
+        List<Comment> comments = commentService.getCommentsByPostId(id);
+
+        model.addAttribute("post", post);
+        model.addAttribute("comments", comments);
+
+        return "post";
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> addPost(@RequestBody Post post) {
+    @PostMapping
+    public String addPost(@ModelAttribute Post post) {
         postService.addPost(post);
-        return ResponseEntity.ok("Пост добавлен");
+        return "redirect:/";
     }
 
     @PostMapping("/{id}/like")
@@ -46,10 +50,10 @@ public class PostController {
         return postService.getPostsByTag(tag);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updatePost(@PathVariable("id") Long id, @RequestBody Post post) {
+    @PostMapping("/edit")
+    public String updatePost(@RequestParam("id") Long id, @ModelAttribute Post post) {
         postService.updatePost(id, post);
-        return ResponseEntity.ok("Пост обновлен");
+        return "redirect:/post/" + id;
     }
 
     @DeleteMapping("/{id}")

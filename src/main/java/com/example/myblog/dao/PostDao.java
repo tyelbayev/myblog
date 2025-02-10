@@ -1,7 +1,6 @@
 package com.example.myblog.dao;
 
 import com.example.myblog.model.Post;
-import org.h2.result.Row;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
