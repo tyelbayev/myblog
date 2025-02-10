@@ -3,6 +3,7 @@ package com.example.myblog.service;
 import com.example.myblog.dao.CommentDao;
 import com.example.myblog.model.Comment;
 import com.example.myblog.model.Post;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -32,5 +33,9 @@ public class CommentService {
 
     public void deleteComment(Long id) {
         commentDao.delete(id);
+    }
+
+    public List<Comment> getAll() {
+        return commentDao.getAll();
     }
 }

@@ -2,6 +2,7 @@ package com.example.myblog.dao;
 
 import com.example.myblog.model.Comment;
 import com.example.myblog.model.Post;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -57,5 +58,11 @@ public class CommentDao {
         String sql = "SELECT * FROM comment WHERE id = ?";
         List<Comment> comments = jdbcTemplate.query(sql, commentRowMapper, id);
         return comments.isEmpty() ? Optional.empty() : Optional.of(comments.get(0));
+    }
+
+    public List<Comment> getAll() {
+        String sql = "select * from comment";
+        List<Comment> comments = jdbcTemplate.query(sql, commentRowMapper);
+        return comments;
     }
 }

@@ -26,7 +26,7 @@
 
     <servlet>
         <servlet-name>h2-console</servlet-name>
-        <servlet-class>org.h2.server.web.WebServlet</servlet-class>
+        <servlet-class>org.h2.server.web.JakartaWebServlet</servlet-class>
         <init-param>
             <param-name>-webAllowOthers</param-name>
             <param-value>true</param-value>
@@ -38,5 +38,6 @@
         <servlet-name>h2-console</servlet-name>
         <url-pattern>/h2-console/*</url-pattern>
     </servlet-mapping>
+
 
 </web-app>
