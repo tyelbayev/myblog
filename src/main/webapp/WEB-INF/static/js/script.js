@@ -43,6 +43,7 @@ function likePost(postId) {
 
 function addComment(event, postId) {
     event.preventDefault();
+    console.log("Добавляем комментарий для поста с ID:", postId);
 
     const commentText = document.getElementById('comment-text').value.trim();
     fetch(`/myblog/comment`, {
@@ -81,6 +82,22 @@ function editComment(el) {
     el.parentNode.replaceChild(input, el);
     input.focus();
 }
-function deleteComment() {
-    alert("Комментарий удален");
+function deleteComment(commentId) {
+    if (confirm("Вы уверены, что хотите удалить комментарий?")) {
+        fetch(`/myblog/comment/${commentId}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    // alert("Комментарий успешно удален");
+                    location.reload();
+                } else {
+                    alert("Ошибка при удалении комментария");
+                }
+            })
+            .catch(error => {
+                console.error("Ошибка:", error);
+                alert("Ошибка при удалении комментария");
+            });
+    }
 }

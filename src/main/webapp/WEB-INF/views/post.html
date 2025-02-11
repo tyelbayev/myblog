@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1 th:text="${post.title}"></h1>
-<img th:src="${post.imgUrl}" alt="Post Image">
+<!--<img th:src="${post.imgUrl}" alt="Post Image">-->
 <p th:each="paragraph : ${post.content}" th:text="${paragraph}"></p>
 <p>
     <span th:each="tag : ${post.tags}" class="tag" th:text="${tag}"></span>
@@ -33,14 +33,14 @@
 </div>
 
 <h3>Комментарии</h3>
-<form onsubmit="addComment(event, ${post.id})">
+<form th:attr="onsubmit='addComment(event, ' + ${post.id} + ')'">
     <input type="text" id="comment-text" placeholder="Добавить комментарий" required>
     <button type="submit">Отправить</button>
 </form>
 <div id="comments-list">
     <div th:each="comment : ${comments}" class="comment">
         <p th:text="${comment.content}" ondblclick="editComment(this)"></p>
-        <button onclick="deleteComment()">Удалить</button>
+        <button th:onclick="'deleteComment(' + ${comment.id} + ')'" type="button">Удалить</button>
     </div>
 </div>
 </body>
