@@ -28,7 +28,6 @@ public class DatabaseConfig {
         return new JdbcTemplate(dataSource);
     }
 
-    // Инициализация базы данных с помощью SQL-скрипта
     @Bean
     public DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
