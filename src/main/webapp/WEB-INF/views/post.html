@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1 th:text="${post.title}"></h1>
-<!--<img th:src="${post.imgUrl}" alt="Post Image">-->
+<img th:src="${post.imgUrl}" alt="Post Image">
 <p th:each="paragraph : ${post.content}" th:text="${paragraph}"></p>
 <p>
     <span th:each="tag : ${post.tags}" class="tag" th:text="${tag}"></span>
